@@ -1,0 +1,11 @@
+modLoader="javafml"
+loaderVersion="[47,)"  # Adjust based on your Forge version
+license="MIT"
+
+[[mods]]
+modId="flycraft"
+version="1.0.0"
+displayName="FlyCraft"
+updateJSONURL=""
+authors="Sameeran"
+description='A Minecraft Forge mod that adds jet-like flight simulation while using an Elytra.'
