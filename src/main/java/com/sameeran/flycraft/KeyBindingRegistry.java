@@ -14,9 +14,7 @@ public class KeyBindingRegistry {
         }
     }
 
-    public static KeyMapping createKeyBinding(String name, 
-                                           int keyCode, 
-                                           String category) {
+    public static KeyMapping createKeyBinding(String name, int keyCode, String category) {
         return new KeyMapping(
             name,
             KeyConflictContext.IN_GAME,
@@ -27,12 +25,7 @@ public class KeyBindingRegistry {
         );
     }
 
-    public static KeyMapping createKeyBinding(String name, 
-                                           KeyConflictContext context, 
-                                           KeyModifier modifier,
-                                           InputConstants.Type type,
-                                           int keyCode, 
-                                           String category) {
+    public static KeyMapping createKeyBinding(String name, KeyConflictContext context, KeyModifier modifier, InputConstants.Type type,int keyCode, String category) {
         return new KeyMapping(
             name,
             context,
