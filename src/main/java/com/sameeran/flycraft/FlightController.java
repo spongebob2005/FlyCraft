@@ -18,12 +18,16 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = FlyCraftMod.MOD_ID, value = Dist.CLIENT)
 public class FlightController {
 
-    // speed and responsiveness settings
-    private static final double BASE_THRUST = 0.05;     // forward acceleration each tick
-    private static final double MAX_SPEED = 2.8;        // terminal jet speed
-    private static final double SMOOTHNESS = 0.25;      // motion blending
+    // Advanced flight physics parameters
+    private static final double BASE_THRUST = 0.05;     // base thrust acceleration
+    private static final double MAX_SPEED = 3.2;        // terminal velocity
+    private static final double SMOOTHNESS = 0.25;      // motion blending factor
     private static final float CAMERA_ROLL_INTENSITY = 3.0f;
-    // FOV adjustments are handled via a separate event; reserved constant removed
+    private static final double DRAG_COEFFICIENT = 0.02; // air resistance
+    private static final double LIFT_COEFFICIENT = 0.03; // lift force
+    private static final double STALL_ANGLE = 0.8;      // critical angle of attack
+    private static final double BANKING_FORCE = 0.015;  // lateral force during turns
+    private static final double MIN_SPEED = 0.8;        // minimum speed before stall
 
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
@@ -34,13 +38,43 @@ public class FlightController {
 
             Vec3 look = player.getLookAngle();
             Vec3 currentVel = player.getDeltaMovement();
+            double speed = currentVel.length();
 
-            // add continuous forward thrust (no fireworks)
-            Vec3 boosted = currentVel.add(look.scale(BASE_THRUST));
-            if (boosted.length() > MAX_SPEED)
+            // Calculate angle of attack (angle between velocity and look direction)
+            double angleOfAttack = Math.acos(currentVel.normalize().dot(look));
+            
+            // Stall mechanics - lose lift if angle too high
+            double liftMultiplier = angleOfAttack > STALL_ANGLE ? 0.2 : 1.0;
+            
+            // Thrust vector - reduced at high angles of attack
+            double thrustPower = BASE_THRUST * (1.0 - (angleOfAttack / Math.PI) * 0.7);
+            Vec3 thrust = look.scale(thrustPower);
+            
+            // Lift force - perpendicular to velocity, scaled by speed
+            Vec3 up = new Vec3(0, 1, 0);
+            Vec3 liftDir = currentVel.cross(up).cross(currentVel).normalize();
+            Vec3 lift = liftDir.scale(LIFT_COEFFICIENT * speed * speed * liftMultiplier);
+            
+            // Air resistance (drag) - increases with square of speed
+            Vec3 drag = currentVel.normalize().scale(-DRAG_COEFFICIENT * speed * speed);
+            
+            // Banking forces during turns
+            Vec3 sideForce = look.cross(up).scale(BANKING_FORCE * speed);
+            
+            // Combine all forces
+            Vec3 totalForce = thrust.add(lift).add(drag).add(sideForce);
+            Vec3 boosted = currentVel.add(totalForce);
+
+            // Speed limits
+            if (boosted.length() > MAX_SPEED) {
                 boosted = boosted.normalize().scale(MAX_SPEED);
+            } else if (boosted.length() < MIN_SPEED && player.getY() > player.level().getMinBuildHeight()) {
+                // Gradual stall at low speeds
+                boosted = boosted.normalize().scale(MIN_SPEED);
+                boosted = boosted.add(new Vec3(0, -0.08, 0)); // Start falling if too slow
+            }
 
-            // smooth interpolation for fluid motion
+            // Smooth interpolation for fluid motion
             Vec3 newVel = currentVel.lerp(boosted, SMOOTHNESS);
             player.setDeltaMovement(newVel);
 
@@ -73,14 +107,30 @@ public class FlightController {
         if (player == null || !player.isFallFlying() || !ClientEvents.isJetMode()) return;
 
         float tick = (float) (player.tickCount + event.getPartialTick());
-        double speed = player.getDeltaMovement().length();
+        Vec3 velocity = player.getDeltaMovement();
+        double speed = velocity.length();
+        Vec3 look = player.getLookAngle();
 
-        // roll based on horizontal velocity
-        float roll = (float) (Math.sin(tick / 10.0) * CAMERA_ROLL_INTENSITY);
-        event.setRoll(roll);
+        // Calculate bank angle based on lateral velocity
+        Vec3 lateralVel = velocity.multiply(1, 0, 1);
+        double lateralSpeed = lateralVel.length();
+        Vec3 right = look.cross(new Vec3(0, 1, 0));
+        float bankAngle = (float) (right.dot(lateralVel.normalize()) * lateralSpeed * CAMERA_ROLL_INTENSITY);
 
-        // dynamic pitch (nose down slightly at high speed)
-        event.setPitch(event.getPitch() - (float) (speed * 1.5));
+        // Apply realistic roll based on banking
+        event.setRoll(bankAngle);
+
+        // Dynamic pitch based on angle of attack and speed
+        double angleOfAttack = Math.acos(velocity.normalize().dot(look));
+        float pitchEffect = (float) (speed * 1.5 + angleOfAttack * 20);
+        event.setPitch(event.getPitch() - pitchEffect);
+
+        // Add slight camera shake at high speeds
+        if (speed > MAX_SPEED * 0.8) {
+            float shake = (float) (Math.sin(tick * speed) * 0.3 * (speed / MAX_SPEED));
+            event.setRoll(event.getRoll() + shake);
+            event.setYaw(event.getYaw() + shake * 0.5f);
+        }
 
     // Note: ViewportEvent.ComputeCameraAngles does not provide a FOV setter
     // in the Forge mappings; FOV adjustments should be applied via the
