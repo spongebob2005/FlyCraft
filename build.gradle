@@ -12,8 +12,11 @@ base {
     archivesName = 'flycraft'
 }
 
-// Using Java 17 as required by Forge 1.20.1
-java.toolchain.languageVersion = JavaLanguageVersion.of(17)
+// Target Java 21 (user requested upgrade to latest LTS)
+// NOTE: Forge 1.20.1 historically required Java 17; moving to Java 21 may
+// require verifying Forge/mod compatibility. If you encounter issues, you
+// can revert to Java 17 or test with a newer Forge/MC target.
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
 println "Java: ${System.getProperty 'java.version'}, JVM: ${System.getProperty 'java.vm.version'} (${System.getProperty 'java.vendor'}), Arch: ${System.getProperty 'os.arch'}"
 minecraft {
