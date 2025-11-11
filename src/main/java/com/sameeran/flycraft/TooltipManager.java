@@ -59,8 +59,9 @@ public class TooltipManager {
 
         if (tooltipDisplayTime > 0 && !currentTooltip.isEmpty()) {
             GuiGraphics guiGraphics = event.getGuiGraphics();
-            int screenWidth = event.getWindow().getGuiScaledWidth();
-            int screenHeight = event.getWindow().getGuiScaledHeight();
+            net.minecraft.client.Minecraft mc = net.minecraft.client.Minecraft.getInstance();
+            int screenWidth = mc.getWindow().getGuiScaledWidth();
+            int screenHeight = mc.getWindow().getGuiScaledHeight();
 
             // Render tooltip at bottom center with fade effect
             float alpha = Math.min(1.0f, tooltipDisplayTime / 50.0f);
@@ -85,7 +86,7 @@ public class TooltipManager {
         if (player == null) return;
 
         GuiGraphics guiGraphics = event.getGuiGraphics();
-        int screenWidth = event.getWindow().getGuiScaledWidth();
+        int screenWidth = mc.getWindow().getGuiScaledWidth();
 
         String hint = "";
         if (!player.isFallFlying() && !ClientEvents.isJetMode()) {

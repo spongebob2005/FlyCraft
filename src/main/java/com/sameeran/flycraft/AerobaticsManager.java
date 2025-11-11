@@ -10,7 +10,6 @@ import net.minecraft.world.phys.Vec3;
 public class AerobaticsManager {
 
     // Stunt tracking
-    private static Vec3 lastVelocity = Vec3.ZERO;
     private static int barrelRollTicks = 0;
     private static int loopTicks = 0;
     private static int stuntCooldown = 0;
@@ -67,10 +66,7 @@ public class AerobaticsManager {
             // Decay speed multiplier
             stuntMultiplier = Math.max(1.0, stuntMultiplier - 0.02);
         }
-
-        lastVelocity = currentVel;
     }
-
     /**
      * Called when a stunt is successfully completed.
      */
