@@ -1,0 +1,10 @@
+{
+  "key.categories.flycraft": "FlyCraft",
+  "key.categories.movement": "Movement",
+  "key.flycraft.toggle_mode": "Toggle Jet Mode",
+  "key.flycraft.wave": "Wave Animation",
+  "key.flycraft.clap": "Clap Animation",
+  "key.flycraft.dance": "Dance Animation",
+  "key.flycraft.spin": "Spin Animation",
+  "key.flycraft.jump_boost": "Jump Boost Animation"
+}
