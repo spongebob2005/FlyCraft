@@ -6,6 +6,7 @@ import net.minecraftforge.client.event.RegisterKeyMappingsEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.lwjgl.glfw.GLFW;
+import com.sameeran.flycraft.animation.AnimationKeybinds;
 
 @Mod.EventBusSubscriber(modid = FlyCraftMod.MOD_ID, value = Dist.CLIENT, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class KeybindHandler {
@@ -20,5 +21,10 @@ public class KeybindHandler {
     @SubscribeEvent
     public static void registerKeys(RegisterKeyMappingsEvent event) {
         event.register(TOGGLE_MODE_KEY);
+
+        // Register animation keybinds
+        for (KeyMapping keybind : AnimationKeybinds.getAllKeybinds()) {
+            event.register(keybind);
+        }
     }
 }
