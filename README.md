@@ -464,26 +464,15 @@ This project is licensed under the **MIT License** - see [LICENSE.txt](./LICENSE
 
 ## 🙏 Acknowledgments
 
-- Built with **Minecraft Forge** and the amazing modding community
+- Built with **Minecraft Forge**
 - Inspired by popular mods like "Actions and Stuff"
-- Thanks to all contributors and testers
-
----
-
-## 📞 Support
-
-For questions, issues, or suggestions:
-
-- **Report Issues** - [Open an issue on GitHub](https://github.com/your-username/FlyCraft/issues)
-- **Discussions** - Join our community discussions
-- **Discord** - Join the FlyCraft Discord server (if available)
 
 ---
 
 ## 👨‍💻 Built By
 
 **Sameeran** - Developer & Maintainer
-- GitHub: [@sameeran](https://github.com/your-username)
+- GitHub: [@sameeran](https://github.com/spongebob2005)
 - Minecraft IGN: Sameeran
 
 ---
