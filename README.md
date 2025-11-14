@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="./assets/cover-banner.svg" alt="FlyCraft 1.0 Banner" width="100%">
+    <img src="./assets/cover-banner.png" alt="FlyCraft 1.0 Banner" width="100%">
 </div>
 
 # 🛸 FlyCraft 1.0
