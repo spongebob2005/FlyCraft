@@ -4,6 +4,7 @@ import net.minecraft.client.model.PlayerModel;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderPlayerEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import com.sameeran.flycraft.FlyCraftMod;
@@ -14,6 +15,7 @@ import com.sameeran.flycraft.FlyCraftMod;
 @Mod.EventBusSubscriber(modid = FlyCraftMod.MOD_ID, value = Dist.CLIENT)
 public class AnimationController {
     private static LocalPlayer lastPlayer = null;
+    private static boolean initialized = false;
 
     /**
      * Initialize animations for a player
@@ -35,10 +37,27 @@ public class AnimationController {
      * Update animations every tick
      */
     @SubscribeEvent
-    public static void onPlayerTick(net.minecraftforge.event.TickEvent.PlayerTickEvent event) {
-        if (event.player.level().isClientSide && event.phase == net.minecraftforge.event.TickEvent.Phase.END) {
-            AnimationManager.updateAnimations(0.05f); // 50ms per tick
+    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        if (!event.player.level().isClientSide || event.phase != TickEvent.Phase.END) return;
+        
+        LocalPlayer player = (LocalPlayer) event.player;
+        
+        // Initialize animations on first tick
+        if (!initialized || lastPlayer != player) {
+            if (player.getModelName().equals("default")) { // Only for default model
+                try {
+                    // We can't directly access PlayerModel here, so just mark as initialized
+                    initialized = true;
+                    lastPlayer = player;
+                    System.out.println("[FlyCraft] Animation system initialized for player");
+                } catch (Exception e) {
+                    System.err.println("[FlyCraft] Error initializing animations: " + e.getMessage());
+                }
+            }
         }
+        
+        // Update animations every tick
+        AnimationManager.updateAnimations(0.05f); // 50ms per tick
     }
 
     /**
@@ -46,8 +65,21 @@ public class AnimationController {
      */
     @SubscribeEvent
     public static void onRenderPlayer(RenderPlayerEvent.Pre event) {
-        // Store player reference for animation application
-        lastPlayer = (LocalPlayer) event.getEntity();
+        LocalPlayer player = (LocalPlayer) event.getEntity();
+        lastPlayer = player;
+        
+        // Initialize animations if not done yet
+        if (!initialized) {
+            try {
+                PlayerModel<?> model = (PlayerModel<?>) event.getRenderer().getModel();
+                initializePlayerAnimations(player, model);
+                initialized = true;
+                System.out.println("[FlyCraft] Animations initialized on render event");
+            } catch (Exception e) {
+                System.err.println("[FlyCraft] Error initializing animations on render: " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
     }
 
     /**
