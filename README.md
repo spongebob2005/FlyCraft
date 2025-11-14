@@ -2,6 +2,13 @@
     <img src="./assets/cover-banner.png" alt="FlyCraft 1.0 Banner" width="100%">
 </div>
 
+<div align="center">
+    <video controls width="960" poster="./assets/cover-banner.png">
+        <source src="./assets/FLYCRAFT.mp4" type="video/mp4">
+        Your browser does not support the video tag. <a href="./assets/FLYCRAFT.mp4">Download the demo</a>.
+    </video>
+</div>
+
 # 🛸 FlyCraft 1.0
 ### Advanced Flight & Animation System for Minecraft Forge
 
