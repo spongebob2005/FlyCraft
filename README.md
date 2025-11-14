@@ -1,4 +1,8 @@
-# 🛸 FlyCraft
+<div align="center">
+  <img src="./assets/cover-banner.svg" alt="FlyCraft 1.0 Banner" width="100%">
+</div>
+
+# 🛸 FlyCraft 1.0
 ### Advanced Flight & Animation System for Minecraft Forge
 
 > A powerful client-side mod that brings dynamic flight mechanics and fluid animations to Minecraft 1.20.1, empowering players with graceful aerial movement and visual flair.
@@ -7,7 +11,44 @@
 
 ---
 
-## ✨ Features
+<div align="center">
+
+![Minecraft](https://img.shields.io/badge/Minecraft-1.20.1-green?logo=minecraft)
+![Forge](https://img.shields.io/badge/Forge-47.4.10-orange)
+![Java](https://img.shields.io/badge/Java-21%20LTS-blue)
+![License](https://img.shields.io/badge/License-MIT-brightgreen)
+![Release](https://img.shields.io/badge/Release-v1.0-cyan)
+
+</div>
+
+---
+
+---
+
+## 🎉 FlyCraft 1.0 Release Highlights
+
+Welcome to the **official release of FlyCraft 1.0**! This version includes:
+
+### ✨ Features Included
+
+- ✅ **Complete Animation System** - 7 pre-built animations with smooth easing functions
+- ✅ **Advanced Flight Mechanics** - Responsive elytra flight with jet mode acceleration
+- ✅ **Particle Effects System** - 6 dynamic particle effect types for visual polish
+- ✅ **Easy Keybinds** - Pre-configured animation triggers (V, C, B, X, Z keys)
+- ✅ **Jet Mode Overlay** - Immersive visual feedback system with speed-based effects
+- ✅ **Zero Dependencies** - Pure Forge implementation, no external mod dependencies
+- ✅ **Professional Documentation** - Comprehensive guides and troubleshooting resources
+- ✅ **Production Ready** - Fully tested on Minecraft 1.20.1 Forge
+
+### 🔄 From Beta to 1.0
+
+This release represents the culmination of development work focusing on:
+- Stability and performance optimization
+- Animation system initialization and lifecycle management
+- Comprehensive documentation and troubleshooting guides
+- Professional README and cover art
+
+---
 
 - **Dynamic Flight System** - Smooth, responsive elytra flight with adjustable speed and control
 - **Advanced Animation Engine** - 7+ built-in animations including flight, gliding, jumping, and dances
@@ -34,6 +75,7 @@
    ```
    Download FlyCraft-1.0.jar from the releases page
    ```
+   Or download directly from [GitHub Releases](https://github.com/your-username/FlyCraft/releases/tag/v1.0)
 
 2. **Install to Minecraft**
    ```
@@ -103,6 +145,8 @@ Each animation can trigger particle effects:
 
 ```
 FlyCraft/
+├── assets/
+│   └── cover-banner.svg              # FlyCraft 1.0 cover image
 ├── src/
 │   └── main/
 │       ├── java/com/sameeran/flycraft/
@@ -114,7 +158,7 @@ FlyCraft/
 │       │   ├── HUDOverlay.java               # Visual overlays
 │       │   ├── JetModeOverlayRenderer.java   # Jet mode effects
 │       │   ├── ClientRegistry.java           # Client-side registry
-│       │   └── animation/                    # Animation system
+│       │   └── animation/                    # Animation system v1.0
 │       │       ├── Animation.java            # Base animation class
 │       │       ├── EasingFunction.java       # Easing curves
 │       │       ├── AnimationManager.java     # Animation registry
@@ -131,7 +175,9 @@ FlyCraft/
 ├── build.gradle                              # Gradle configuration
 ├── settings.gradle
 ├── gradle.properties
-└── README.md
+├── DOCUMENTATION_INDEX.md                    # Full docs reference
+├── README.md                                 # This file (FlyCraft 1.0)
+└── LICENSE.txt                               # MIT License
 ```
 
 ---
