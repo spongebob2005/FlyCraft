@@ -72,10 +72,50 @@ This release represents the culmination of development work focusing on:
 ### Installation
 
 1. **Download the mod**
-   ```
-   Download FlyCraft-1.0.jar from the releases page
-   ```
-   Or download directly from [GitHub Releases](https://github.com/your-username/FlyCraft/releases/tag/v1.0)
+
+    Note: There is no official release uploaded yet. You have two options:
+
+    - Build the JAR locally (recommended for developers and power users)
+    - Create a GitHub Release and attach the built JAR so others can download it
+
+    Build locally (PowerShell / Windows):
+
+    ```powershell
+    # From the repository root
+    .\gradlew.bat clean build
+
+    # After build, the mod JAR will be at:
+    # build\libs\flycraft-1.0.jar
+    ```
+
+    Build locally (Unix/macOS):
+
+    ```bash
+    ./gradlew clean build
+    # build/libs/flycraft-1.0.jar
+    ```
+
+    Make the JAR publicly available (manual GUI):
+
+    1. Go to your repository on GitHub → "Releases" → "Draft a new release".
+    2. Tag version: `v1.0` (or choose your tag name).
+    3. Title: `FlyCraft 1.0`.
+    4. Upload the file `build/libs/flycraft-1.0.jar` as a release asset.
+    5. Add release notes (you can paste contents from `RELEASE_NOTES.md`).
+    6. Publish release — the JAR will be visible to the public on the Releases page.
+
+    Make the JAR publicly available (gh CLI):
+
+    ```powershell
+    # Tag locally and push tag
+    git tag v1.0
+    git push origin v1.0
+
+    # Create a release and upload the artifact (requires GitHub CLI 'gh' installed and authenticated)
+    gh release create v1.0 build\libs\flycraft-1.0.jar --title "FlyCraft 1.0" --notes-file RELEASE_NOTES.md
+    ```
+
+    Alternative: If you prefer not to create a GitHub Release, you may upload the JAR to a distribution platform such as Modrinth or CurseForge and link to it here.
 
 2. **Install to Minecraft**
    ```
@@ -98,8 +138,14 @@ This release represents the culmination of development work focusing on:
 git clone <your-repo-url>
 cd FlyCraft
 
-# Build the project
-./gradlew build
+# Build the project (Unix/macOS)
+./gradlew clean build
+
+# Or on Windows PowerShell
+.\gradlew.bat clean build
+
+# The built JAR will be in:
+# build/libs/flycraft-1.0.jar
 
 # Run in development
 ./gradlew runClient
