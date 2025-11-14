@@ -472,7 +472,7 @@ This project is licensed under the **MIT License** - see [LICENSE.txt](./LICENSE
 ## 👨‍💻 Built By
 
 **Sameeran** - Developer & Maintainer
-- GitHub: [@sameeran](https://github.com/spongebob2005)
+- GitHub: [@spongebob2005](https://github.com/spongebob2005)
 - Minecraft IGN: Sameeran
 
 ---
