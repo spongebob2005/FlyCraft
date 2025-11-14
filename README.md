@@ -64,7 +64,6 @@ This release represents the culmination of development work focusing on:
 <div align="center">
     <video controls width="960" poster="./assets/cover-banner.png">
         <source src="./assets/FLYCRAFT.mp4" type="video/mp4">
-        Your browser does not support the video tag. <a href="./assets/FLYCRAFT.mp4">Download the demo</a>.
     </video>
 </div>
 ---
