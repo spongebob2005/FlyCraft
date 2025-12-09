@@ -23,8 +23,6 @@
 
 ---
 
----
-
 ## 🎉 FlyCraft 1.0 Release Highlights
 
 Welcome to the **official release of FlyCraft 1.0**! This version includes:
@@ -68,6 +66,11 @@ This release represents the culmination of development work focusing on:
 - **Customizable** - Easily modify animations, speeds, and effects to fit your playstyle
 
 ---
+<div align="center">
+    <video controls width="960" poster="./assets/cover-banner.png">
+        <source src="./assets/FLYCRAFT.mp4" type="video/mp4">
+    </video>
+</div>
 ---
 
 ## 🎮 Quick Start
