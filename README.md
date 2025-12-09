@@ -5,8 +5,11 @@
 ---
 
 <div align="center">
-    [![FlyCraft demo](./assets/cover-banner.png)](https://github.com/spongebob2005/FlyCraft/releases/tag/v1.0)
-    <p><em>Demo: Aerobatics & Jet Mode — click to view/download the full video on the Releases page.</em></p>
+    <video controls width="960" poster="./assets/cover-banner.png">
+        <source src="./assets/FLYCRAFT.mp4" type="video/mp4">
+        Your browser does not support the video tag. <a href="./assets/FLYCRAFT.mp4">Download the tutorial</a>.
+    </video>
+    <p><em>Tutorial: Aerobatics & Jet Mode — playback should work in the README.</em></p>
 </div>
 
 <div align="center">
@@ -65,8 +68,11 @@ This release represents the culmination of development work focusing on:
 
 ---
 <div align="center">
-    [![FlyCraft demo](./assets/cover-banner.png)](https://github.com/spongebob2005/FlyCraft/releases/tag/v1.0)
-    <p><em>Demo: Aerobatics & Jet Mode — click to view/download the full video on the Releases page.</em></p>
+    <video controls width="960" poster="./assets/cover-banner.png">
+        <source src="./assets/FLYCRAFT.mp4" type="video/mp4">
+        Your browser does not support the video tag. <a href="./assets/FLYCRAFT.mp4">Download the tutorial</a>.
+    </video>
+    <p><em>Tutorial: Aerobatics & Jet Mode — playback should work in the README.</em></p>
 </div>
 ---
 
