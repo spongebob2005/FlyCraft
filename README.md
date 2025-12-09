@@ -4,14 +4,7 @@
 
 ---
 
-<div align="center">
-    <video controls width="960" poster="./assets/cover-banner.png">
-        <source src="./assets/FLYCRAFT.mp4" type="video/mp4">
-        Your browser does not support the video tag. <a href="./assets/FLYCRAFT.mp4">Download the tutorial</a>.
-    </video>
-    <p><em>Tutorial: Aerobatics & Jet Mode — playback should work in the README.</em></p>
-</div>
-
+<!-- cover banner above -->
 <div align="center">
 
 ![Minecraft](https://img.shields.io/badge/Minecraft-1.20.1-green?logo=minecraft)
@@ -48,13 +41,27 @@ This release represents the culmination of development work focusing on:
 - Professional README and cover art
 
 ---
--
+## 🎓 Tutorial — Aerobatics & Jet Mode
+
+Watch the short tutorial below for a walkthrough of FlyCraft's aerobatic controls and jet mode. The video is included in the repository under `assets/FLYCRAFT.mp4`.
+
 <div align="center">
     <video controls width="960" poster="./assets/cover-banner.png">
         <source src="./assets/FLYCRAFT.mp4" type="video/mp4">
-        Your browser does not support the video tag. <a href="./assets/FLYCRAFT.mp4">Download the demo</a>.
+        Your browser does not support the video tag. <a href="./assets/FLYCRAFT.mp4">Download the tutorial</a>.
     </video>
+    <p><em>Tutorial: Aerobatics & Jet Mode — use the timestamps below to jump to specific segments.</em></p>
 </div>
+
+### Tutorial timestamps
+
+- 00:00 — Intro & controls overview
+- 00:18 — Entering jet mode
+- 00:35 — Performing a roll
+- 00:50 — Flip / barrel roll
+- 01:10 — Combining maneuvers and landing
+
+---
 
 - **Dynamic Flight System** - Smooth, responsive elytra flight with adjustable speed and control
 - **Advanced Animation Engine** - 7+ built-in animations including flight, gliding, jumping, and dances
@@ -67,14 +74,7 @@ This release represents the culmination of development work focusing on:
 - **Customizable** - Easily modify animations, speeds, and effects to fit your playstyle
 
 ---
-<div align="center">
-    <video controls width="960" poster="./assets/cover-banner.png">
-        <source src="./assets/FLYCRAFT.mp4" type="video/mp4">
-        Your browser does not support the video tag. <a href="./assets/FLYCRAFT.mp4">Download the tutorial</a>.
-    </video>
-    <p><em>Tutorial: Aerobatics & Jet Mode — playback should work in the README.</em></p>
-</div>
----
+*** End Patch
 
 ## 🎮 Quick Start
 
