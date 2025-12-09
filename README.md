@@ -49,6 +49,13 @@ This release represents the culmination of development work focusing on:
 - Professional README and cover art
 
 ---
+-
+<div align="center">
+    <video controls width="960" poster="./assets/cover-banner.png">
+        <source src="./assets/FLYCRAFT.mp4" type="video/mp4">
+        Your browser does not support the video tag. <a href="./assets/FLYCRAFT.mp4">Download the demo</a>.
+    </video>
+</div>
 
 - **Dynamic Flight System** - Smooth, responsive elytra flight with adjustable speed and control
 - **Advanced Animation Engine** - 7+ built-in animations including flight, gliding, jumping, and dances
@@ -61,11 +68,6 @@ This release represents the culmination of development work focusing on:
 - **Customizable** - Easily modify animations, speeds, and effects to fit your playstyle
 
 ---
-<div align="center">
-    <video controls width="960" poster="./assets/cover-banner.png">
-        <source src="./assets/FLYCRAFT.mp4" type="video/mp4">
-    </video>
-</div>
 ---
 
 ## 🎮 Quick Start
