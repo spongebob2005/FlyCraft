@@ -2,14 +2,12 @@
     <img src="./assets/cover-banner.png" alt="FlyCraft 1.0 Banner" width="100%">
 </div>
 
-# 🛸 FlyCraft 1.0
-### Advanced Flight & Animation System for Minecraft Forge
-
-> A powerful client-side mod that brings dynamic flight mechanics and fluid animations to Minecraft 1.20.1, empowering players with graceful aerial movement and visual flair.
-
-**For players and modders, by developers.** Smooth flight that slaps⚡
-
 ---
+
+<div align="center">
+    [![FlyCraft demo](./assets/cover-banner.png)](https://github.com/spongebob2005/FlyCraft/releases/tag/v1.0)
+    <p><em>Demo: Aerobatics & Jet Mode — click to view/download the full video on the Releases page.</em></p>
+</div>
 
 <div align="center">
 
@@ -67,9 +65,8 @@ This release represents the culmination of development work focusing on:
 
 ---
 <div align="center">
-    <video controls width="960" poster="./assets/cover-banner.png">
-        <source src="./assets/FLYCRAFT.mp4" type="video/mp4">
-    </video>
+    [![FlyCraft demo](./assets/cover-banner.png)](https://github.com/spongebob2005/FlyCraft/releases/tag/v1.0)
+    <p><em>Demo: Aerobatics & Jet Mode — click to view/download the full video on the Releases page.</em></p>
 </div>
 ---
 
