@@ -74,7 +74,6 @@ Watch the short tutorial below for a walkthrough of FlyCraft's aerobatic control
 - **Customizable** - Easily modify animations, speeds, and effects to fit your playstyle
 
 ---
-*** End Patch
 
 ## 🎮 Quick Start
 
