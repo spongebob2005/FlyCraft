@@ -13,9 +13,12 @@ public class FlightModeManager {
         return playerModes.getOrDefault(uuid, FlightMode.NORMAL);
     }
 
+    /** Added missing setMode — was required by ClientEvents but didn't exist. */
+    public static void setMode(UUID uuid, FlightMode mode) {
+        playerModes.put(uuid, mode);
+    }
+
     public static void toggleMode(UUID uuid) {
-        FlightMode current = getMode(uuid);
-        FlightMode next = (current == FlightMode.NORMAL) ? FlightMode.JET : FlightMode.NORMAL;
-        playerModes.put(uuid, next);
+        setMode(uuid, getMode(uuid) == FlightMode.NORMAL ? FlightMode.JET : FlightMode.NORMAL);
     }
 }

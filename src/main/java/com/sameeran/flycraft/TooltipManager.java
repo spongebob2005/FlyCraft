@@ -1,118 +1,82 @@
 package com.sameeran.flycraft;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.ScreenEvent;
+import net.minecraftforge.client.event.RenderGuiEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 /**
- * Displays on-screen tutorial hints and tooltips for flight mechanics.
+ * Shows contextual flight hints on the HUD.
+ *
+ * BUG FIXED: was using ScreenEvent.Render.Post (only fires when a menu is open)
+ * with an early-return check for screen != null — so hints NEVER rendered.
+ * Now uses RenderGuiEvent.Post, which fires every frame in-game.
  */
 @Mod.EventBusSubscriber(modid = FlyCraftMod.MOD_ID, value = Dist.CLIENT)
 public class TooltipManager {
 
-    private static int tooltipDisplayTime = 0;
-    private static String currentTooltip = "";
-    private static final int TOOLTIP_DURATION = 200; // ~10 seconds at 20 ticks/sec
+    private static String currentTooltip    = "";
+    private static int    tooltipDisplayTime = 0;
+    private static final int TOOLTIP_DURATION = 200;
+
     private static boolean tutorialMode = true;
 
-    /**
-     * Show a tooltip message on screen.
-     */
     public static void showTooltip(String message) {
-        currentTooltip = message;
+        currentTooltip    = message;
         tooltipDisplayTime = TOOLTIP_DURATION;
     }
 
-    /**
-     * Toggle tutorial mode on/off.
-     */
-    public static void setTutorialMode(boolean enabled) {
-        tutorialMode = enabled;
-    }
+    public static void setTutorialMode(boolean enabled) { tutorialMode = enabled; }
+    public static boolean isTutorialMode()              { return tutorialMode; }
 
-    /**
-     * Check if tutorial mode is active.
-     */
-    public static boolean isTutorialMode() {
-        return tutorialMode;
-    }
-
-    /**
-     * Update tooltip display each frame.
-     */
-    public static void updateTooltip() {
-        if (tooltipDisplayTime > 0) {
-            tooltipDisplayTime--;
-        }
-    }
-
-    /**
-     * Render tooltips and hints on-screen.
-     */
     @SubscribeEvent
-    public static void onScreenRender(ScreenEvent.Render.Post event) {
-        // Only render on HUD, not on menu screens
-        if (event.getScreen() != null) return;
+    public static void onRenderGui(RenderGuiEvent.Post event) {
+        Minecraft mc = Minecraft.getInstance();
+        // Skip when any GUI screen is open
+        if (mc.screen != null) return;
 
-        if (tooltipDisplayTime > 0 && !currentTooltip.isEmpty()) {
-            GuiGraphics guiGraphics = event.getGuiGraphics();
-            net.minecraft.client.Minecraft mc = net.minecraft.client.Minecraft.getInstance();
-            int screenWidth = mc.getWindow().getGuiScaledWidth();
-            int screenHeight = mc.getWindow().getGuiScaledHeight();
-
-            // Render tooltip at bottom center with fade effect
-            float alpha = Math.min(1.0f, tooltipDisplayTime / 50.0f);
-            int textColor = (int) (255 * alpha) << 24 | 0xFFFFFF;
-
-            int y = screenHeight - 50;
-            drawCenteredString(guiGraphics, currentTooltip, screenWidth / 2, y, textColor);
-        }
-
-        // Display hints based on player state
-        if (tutorialMode) {
-            displayContextualHints(event);
-        }
-    }
-
-    /**
-     * Show context-sensitive hints based on flight state.
-     */
-    private static void displayContextualHints(ScreenEvent.Render.Post event) {
-        net.minecraft.client.Minecraft mc = net.minecraft.client.Minecraft.getInstance();
         LocalPlayer player = mc.player;
         if (player == null) return;
 
-        GuiGraphics guiGraphics = event.getGuiGraphics();
-        int screenWidth = mc.getWindow().getGuiScaledWidth();
+        GuiGraphics gfx = event.getGuiGraphics();
+        int sw = mc.getWindow().getGuiScaledWidth();
+        int sh = mc.getWindow().getGuiScaledHeight();
 
-        String hint = "";
-        if (!player.isFallFlying() && !ClientEvents.isJetMode()) {
-            hint = "Press R to toggle Jet Mode (requires Elytra)";
-        } else if (player.isFallFlying() && ClientEvents.isJetMode()) {
-            double speed = player.getDeltaMovement().length();
-            if (speed < 0.8) {
-                hint = "Warning: Stalling! Increase speed or altitude";
-            } else if (AerobaticsManager.getBarrelRollProgress() > 0) {
-                hint = "Barrel Roll: " + AerobaticsManager.getBarrelRollProgress() + "%";
-            } else if (AerobaticsManager.getLoopProgress() > 0) {
-                hint = "Loop: " + AerobaticsManager.getLoopProgress() + "%";
-            }
+        // Fade-out timed tooltip
+        if (tooltipDisplayTime > 0) {
+            tooltipDisplayTime--;
+            float alpha    = Math.min(1.0f, tooltipDisplayTime / 50.0f);
+            int textColor  = ((int)(255 * alpha) << 24) | 0xFFFFFF;
+            drawCentered(gfx, mc, currentTooltip, sw / 2, sh - 50, textColor);
         }
 
-        if (!hint.isEmpty()) {
-            drawCenteredString(guiGraphics, hint, screenWidth / 2, 20, 0xFFFFFF);
+        // Contextual flight hints
+        if (tutorialMode) {
+            String hint = "";
+            if (!player.isFallFlying() && !ClientEvents.isJetMode()) {
+                hint = "Press R to toggle Jet Mode (requires Elytra)";
+            } else if (player.isFallFlying() && ClientEvents.isJetMode()) {
+                double speed = player.getDeltaMovement().length();
+                if (speed < 0.8) {
+                    hint = "\u26A0 Stalling! Dive to gain speed";
+                } else if (AerobaticsManager.getBarrelRollProgress() > 0) {
+                    hint = "Barrel Roll: " + AerobaticsManager.getBarrelRollProgress() + "%";
+                } else if (AerobaticsManager.getLoopProgress() > 0) {
+                    hint = "Loop: " + AerobaticsManager.getLoopProgress() + "%";
+                }
+            }
+            if (!hint.isEmpty()) {
+                drawCentered(gfx, mc, hint, sw / 2, 20, 0xFFFFFF);
+            }
         }
     }
 
-    /**
-     * Helper to draw centered text.
-     */
-    private static void drawCenteredString(GuiGraphics guiGraphics, String text, int x, int y, int color) {
-        net.minecraft.client.gui.Font font = net.minecraft.client.Minecraft.getInstance().font;
-        int textWidth = font.width(text);
-        guiGraphics.drawString(font, text, x - textWidth / 2, y, color);
+    private static void drawCentered(GuiGraphics gfx, Minecraft mc,
+                                     String text, int cx, int y, int color) {
+        int w = mc.font.width(text);
+        gfx.drawString(mc.font, text, cx - w / 2, y, color, false);
     }
 }
