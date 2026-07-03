@@ -43,15 +43,16 @@ This release represents the culmination of development work focusing on:
 ---
 ## 🎓 Tutorial — Aerobatics & Jet Mode
 
-Watch the short tutorial below for a walkthrough of FlyCraft's aerobatic controls and jet mode. The video is included in the repository root as `FLYCRAFT.mp4`.
+Watch the short tutorial for a walkthrough of FlyCraft's aerobatic controls and jet mode:
 
 <div align="center">
-    <video controls width="960" poster="./assets/cover-banner.png">
-        <source src="./FLYCRAFT.mp4" type="video/mp4">
-        Your browser does not support the video tag. <a href="./FLYCRAFT.mp4">Download the tutorial</a>.
-    </video>
-    <p><em>Tutorial: Aerobatics & Jet Mode — use the timestamps below to jump to specific segments.</em></p>
+    <a href="./FLYCRAFT.mp4">
+        <img src="./assets/cover-banner.png" alt="FlyCraft Tutorial" width="960">
+    </a>
+    <p><em><strong>▶️ Click to play tutorial</strong> — Tutorial: Aerobatics & Jet Mode</em></p>
 </div>
+
+**Or download directly:** [`FLYCRAFT.mp4`](./FLYCRAFT.mp4)
 
 ### Tutorial timestamps
 
