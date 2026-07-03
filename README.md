@@ -5,15 +5,8 @@
 ---
 
 <!-- cover banner above -->
+
 <div align="center">
-
-![Minecraft](https://img.shields.io/badge/Minecraft-1.20.1-green?logo=minecraft)
-![Forge](https://img.shields.io/badge/Forge-47.4.10-orange)
-![Java](https://img.shields.io/badge/Java-21%20LTS-blue)
-![License](https://img.shields.io/badge/License-MIT-brightgreen)
-![Release](https://img.shields.io/badge/Release-v1.0-cyan)
-
-</div>
 
 ---
 
@@ -35,20 +28,25 @@ Welcome to the **official release of FlyCraft 1.0**! This version includes:
 ### 🔄 From Beta to 1.0
 
 This release represents the culmination of development work focusing on:
+
 - Stability and performance optimization
 - Animation system initialization and lifecycle management
 - Comprehensive documentation and troubleshooting guides
 - Professional README and cover art
 
 ---
+
 ## 🎓 Demo
 
 Watch the tutorial to see FlyCraft's aerobatic controls and jet mode in action:
 
-<video controls width="100%" style="max-width: 960px;">
-  <source src="https://github.com/spongebob2005/FlyCraft/raw/main/FLYCRAFT.mp4" type="video/mp4">
-  Your browser does not support the video tag. <a href="https://github.com/spongebob2005/FlyCraft/raw/main/FLYCRAFT.mp4">Download video</a>
-</video>
+<div align="center">
+
+[![Watch the video](./assets/cover-banner.png)](https://github.com/spongebob2005/FlyCraft/raw/main/FLYCRAFT.mp4)
+
+**Click the image above to play the video**
+
+</div>
 
 ### Tutorial timestamps
 
@@ -75,6 +73,7 @@ Watch the tutorial to see FlyCraft's aerobatic controls and jet mode in action:
 ## 🎮 Quick Start
 
 ### Prerequisites
+
 - **Minecraft**: 1.20.1
 - **Java**: Java 21 LTS (recommended) or Java 8+
 - **Forge**: 47.4.10 or compatible version
@@ -83,61 +82,63 @@ Watch the tutorial to see FlyCraft's aerobatic controls and jet mode in action:
 
 1. **Download the mod**
 
-    Note: There is no official release uploaded yet. You have two options:
+   Note: There is no official release uploaded yet. You have two options:
 
-    - Build the JAR locally (recommended for developers and power users)
-    - Create a GitHub Release and attach the built JAR so others can download it
+   - Build the JAR locally (recommended for developers and power users)
+   - Create a GitHub Release and attach the built JAR so others can download it
 
-    Build locally (PowerShell / Windows):
+   Build locally (PowerShell / Windows):
 
-    ```powershell
-    # From the repository root
-    .\gradlew.bat clean build
+   ```powershell
+   # From the repository root
+   .\gradlew.bat clean build
 
-    # After build, the mod JAR will be at:
-    # build\libs\flycraft-1.0.jar
-    ```
+   # After build, the mod JAR will be at:
+   # build\libs\flycraft-1.0.jar
+   ```
 
-    Build locally (Unix/macOS):
+   Build locally (Unix/macOS):
 
-    ```bash
-    ./gradlew clean build
-    # build/libs/flycraft-1.0.jar
-    ```
+   ```bash
+   ./gradlew clean build
+   # build/libs/flycraft-1.0.jar
+   ```
 
-    Make the JAR publicly available (manual GUI):
+   Make the JAR publicly available (manual GUI):
 
-    1. Go to your repository on GitHub → "Releases" → "Draft a new release".
-    2. Tag version: `v1.0` (or choose your tag name).
-    3. Title: `FlyCraft 1.0`.
-    4. Upload the file `build/libs/flycraft-1.0.jar` as a release asset.
-    5. Add release notes (you can paste contents from `RELEASE_NOTES.md`).
-    6. Publish release — the JAR will be visible to the public on the Releases page.
+   1. Go to your repository on GitHub → "Releases" → "Draft a new release".
+   2. Tag version: `v1.0` (or choose your tag name).
+   3. Title: `FlyCraft 1.0`.
+   4. Upload the file `build/libs/flycraft-1.0.jar` as a release asset.
+   5. Add release notes (you can paste contents from `RELEASE_NOTES.md`).
+   6. Publish release — the JAR will be visible to the public on the Releases page.
 
-    Make the JAR publicly available (gh CLI):
+   Make the JAR publicly available (gh CLI):
 
-    ```powershell
-    # Tag locally and push tag
-    git tag v1.0
-    git push origin v1.0
+   ```powershell
+   # Tag locally and push tag
+   git tag v1.0
+   git push origin v1.0
 
-    # Create a release and upload the artifact (requires GitHub CLI 'gh' installed and authenticated)
-    gh release create v1.0 build\libs\flycraft-1.0.jar --title "FlyCraft 1.0" --notes-file RELEASE_NOTES.md
-    ```
+   # Create a release and upload the artifact (requires GitHub CLI 'gh' installed and authenticated)
+   gh release create v1.0 build\libs\flycraft-1.0.jar --title "FlyCraft 1.0" --notes-file RELEASE_NOTES.md
+   ```
 
-    Alternative: If you prefer not to create a GitHub Release, you may upload the JAR to a distribution platform such as Modrinth or CurseForge and link to it here.
-
+   Alternative: If you prefer not to create a GitHub Release, you may upload the JAR to a distribution platform such as Modrinth or CurseForge and link to it here.
 2. **Install to Minecraft**
+
    ```
    Place the JAR file in your Minecraft mods folder:
    %APPDATA%\.minecraft\mods\
    ```
+
    OR on Linux/Mac:
+
    ```
    ~/.minecraft/mods/
    ```
-
 3. **Launch Minecraft**
+
    - Select your Forge profile
    - Enjoy enhanced flight mechanics!
 
@@ -167,27 +168,28 @@ cd FlyCraft
 
 ### Basic Flight Controls
 
-| Action | Control |
-|--------|---------|
-| Equip Elytra | Normal Minecraft mechanics |
-| Ascend | Jump while falling + Move forward |
-| Dive | Sneak while flying |
-| Glide | Release all movement keys |
-| Jet Mode | Special acceleration mode (flight speed boost) |
+| Action       | Control                                        |
+| ------------ | ---------------------------------------------- |
+| Equip Elytra | Normal Minecraft mechanics                     |
+| Ascend       | Jump while falling + Move forward              |
+| Dive         | Sneak while flying                             |
+| Glide        | Release all movement keys                      |
+| Jet Mode     | Special acceleration mode (flight speed boost) |
 
 ### Animation Keybinds
 
-| Key | Animation | Duration | Effect |
-|-----|-----------|----------|--------|
-| **V** | Wave | 1.0s | Wave greeting gesture with particles |
-| **C** | Clap | 1.5s | Hand clapping motion |
-| **B** | Dance | 2.0s | Full body dance with sway |
-| **X** | Spin | 1.0s | Body rotation |
-| **Z** | Jump Boost | 0.4s | Crouch and spring animation |
+| Key         | Animation  | Duration | Effect                               |
+| ----------- | ---------- | -------- | ------------------------------------ |
+| **V** | Wave       | 1.0s     | Wave greeting gesture with particles |
+| **C** | Clap       | 1.5s     | Hand clapping motion                 |
+| **B** | Dance      | 2.0s     | Full body dance with sway            |
+| **X** | Spin       | 1.0s     | Body rotation                        |
+| **Z** | Jump Boost | 0.4s     | Crouch and spring animation          |
 
 ### Particle Effects
 
 Each animation can trigger particle effects:
+
 - **Burst Effect** - Particles explode outward in all directions
 - **Spiral Effect** - Particles spiral around the player
 - **Trail Effect** - Particles follow player movement
@@ -249,12 +251,12 @@ AnimationController (Forge Events)
     ├── tick() event → Updates active animations
     ├── render() event → Applies visual changes
     └── Initialization on first render
-    
+  
 AnimationManager (Registry)
     ├── Registers animations
     ├── Manages lifecycle
     └── Queues animation sequences
-    
+  
 Specific Animations (7 types)
     ├── FlyingAnimation
     ├── SpinAnimation
@@ -274,7 +276,7 @@ public class MyCustomAnimation extends Animation {
     public MyCustomAnimation() {
         super(1.0f, true); // 1.0 second duration, looping
     }
-    
+  
     @Override
     public void apply(PlayerModel<?> model, float progress) {
         // Apply pose changes based on progress (0.0 to 1.0)
@@ -336,6 +338,7 @@ Choose from 6 easing curves in animations:
 ## 🔧 Build Configuration
 
 ### Java Version
+
 Default target: **Java 21 LTS**
 
 To use a different Java version, modify `build.gradle`:
@@ -376,6 +379,7 @@ public static final KeyMapping WAVE_KEY = new KeyMapping(
 ```
 
 To modify:
+
 1. Change the `InputConstants.KEY_*` value
 2. Rebuild the mod
 3. Keybind will appear in Minecraft's Controls settings
@@ -420,14 +424,14 @@ To modify:
 
 ## 🛠️ Tech Stack
 
-| Component | Technology |
-|-----------|-----------|
-| **Framework** | Minecraft Forge 47.4.10 |
-| **Minecraft Version** | 1.20.1 |
-| **Build Tool** | Gradle 8.8 |
-| **Language** | Java 21 LTS |
-| **Architecture** | Event-Driven (Forge Event Bus) |
-| **Rendering** | Minecraft RenderEvents |
+| Component                   | Technology                     |
+| --------------------------- | ------------------------------ |
+| **Framework**         | Minecraft Forge 47.4.10        |
+| **Minecraft Version** | 1.20.1                         |
+| **Build Tool**        | Gradle 8.8                     |
+| **Language**          | Java 21 LTS                    |
+| **Architecture**      | Event-Driven (Forge Event Bus) |
+| **Rendering**         | Minecraft RenderEvents         |
 
 ---
 
@@ -482,6 +486,7 @@ This project is licensed under the **MIT License** - see [LICENSE.txt](./LICENSE
 ## 👨‍💻 Built By
 
 **Sameeran** - Developer & Maintainer
+
 - GitHub: [@spongebob2005](https://github.com/spongebob2005)
 - Minecraft IGN: Sameeran
 
