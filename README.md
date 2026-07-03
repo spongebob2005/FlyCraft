@@ -45,7 +45,7 @@ This release represents the culmination of development work focusing on:
 
 Watch the tutorial to see FlyCraft's aerobatic controls and jet mode in action:
 
-https://github.com/spongebob2005/FlyCraft/assets/resources/FLYCRAFT.mp4
+https://github.com/spongebob2005/FlyCraft/raw/main/FLYCRAFT.mp4
 
 ### Tutorial timestamps
 
