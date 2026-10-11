@@ -1,72 +1,25 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
   <title>FlyCraft logo</title>
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#2c1638"/>
-      <stop offset="1" stop-color="#5b2033"/>
-    </linearGradient>
-    <linearGradient id="face" x1="0" y1="110" x2="0" y2="400" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#ffd23f"/>
-      <stop offset="0.55" stop-color="#ff8a2b"/>
-      <stop offset="1" stop-color="#f0455a"/>
-    </linearGradient>
-  </defs>
+  <!-- Badge -->
+  <rect x="16" y="16" width="480" height="480" rx="96" fill="#15282f"/>
 
-  <!-- Badge: flat dusk background, matching the cover banner -->
-  <rect x="16" y="16" width="480" height="480" rx="96" fill="url(#bg)"/>
-  <g fill="#7a2c3e" opacity="0.45">
-    <rect x="52"  y="60"  width="64" height="28"/>
-    <rect x="84"  y="88"  width="40" height="20"/>
-    <rect x="392" y="402" width="72" height="30"/>
-    <rect x="360" y="432" width="48" height="22"/>
+  <!-- Flight trail: rises out of the block, loops (barrel roll), ends at the plane -->
+  <path d="M140 330 C156 286 110 238 166 222 C222 206 236 282 192 290 C150 298 170 214 252 206"
+        fill="none" stroke="#e0a458" stroke-width="9" stroke-linecap="round" stroke-dasharray="2 20"/>
+
+  <!-- The block: isometric cube (top / left / right faces) -->
+  <g stroke="#15282f" stroke-width="3" stroke-linejoin="round">
+    <polygon points="140,338 192,366 140,394 88,366"   fill="#f3eee4"/>
+    <polygon points="88,366 140,394 140,452 88,424"    fill="#cfc6b6"/>
+    <polygon points="192,366 140,394 140,452 192,424"  fill="#a99f8d"/>
   </g>
 
-  <!-- Speed streaks -->
-  <g fill="#ff8a2b" opacity="0.55">
-    <rect x="62" y="150" width="56" height="12" rx="6"/>
-    <rect x="80" y="258" width="40" height="12" rx="6"/>
-    <rect x="66" y="356" width="50" height="12" rx="6"/>
+  <!-- Paper plane folded from the same three tones -->
+  <g stroke="#15282f" stroke-width="3" stroke-linejoin="round">
+    <polygon points="430,104 306,246 360,232"  fill="#a99f8d"/>
+    <polygon points="430,104 306,246 324,316"  fill="#cfc6b6"/>
+    <polygon points="430,104 236,196 306,246"  fill="#f3eee4"/>
   </g>
-
-  <g transform="translate(-6,-10)">
-    <!-- Dark outline around face and extrusion -->
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,0)" fill="#16112e" stroke="#16112e" stroke-width="22" stroke-linejoin="round"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,2)" fill="#16112e" stroke="#16112e" stroke-width="22" stroke-linejoin="round"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,4)" fill="#16112e" stroke="#16112e" stroke-width="22" stroke-linejoin="round"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,6)" fill="#16112e" stroke="#16112e" stroke-width="22" stroke-linejoin="round"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,8)" fill="#16112e" stroke="#16112e" stroke-width="22" stroke-linejoin="round"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,10)" fill="#16112e" stroke="#16112e" stroke-width="22" stroke-linejoin="round"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,12)" fill="#16112e" stroke="#16112e" stroke-width="22" stroke-linejoin="round"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,14)" fill="#16112e" stroke="#16112e" stroke-width="22" stroke-linejoin="round"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,16)" fill="#16112e" stroke="#16112e" stroke-width="22" stroke-linejoin="round"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,18)" fill="#16112e" stroke="#16112e" stroke-width="22" stroke-linejoin="round"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,20)" fill="#16112e" stroke="#16112e" stroke-width="22" stroke-linejoin="round"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,22)" fill="#16112e" stroke="#16112e" stroke-width="22" stroke-linejoin="round"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,24)" fill="#16112e" stroke="#16112e" stroke-width="22" stroke-linejoin="round"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,26)" fill="#16112e" stroke="#16112e" stroke-width="22" stroke-linejoin="round"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,28)" fill="#16112e" stroke="#16112e" stroke-width="22" stroke-linejoin="round"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,30)" fill="#16112e" stroke="#16112e" stroke-width="22" stroke-linejoin="round"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,32)" fill="#16112e" stroke="#16112e" stroke-width="22" stroke-linejoin="round"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,34)" fill="#16112e" stroke="#16112e" stroke-width="22" stroke-linejoin="round"/>
-    <!-- Indigo 3D extrusion -->
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,34)" fill="#3a2d9c"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,32)" fill="#3a2d9c"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,30)" fill="#3a2d9c"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,28)" fill="#3a2d9c"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,26)" fill="#3a2d9c"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,24)" fill="#3a2d9c"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,22)" fill="#3a2d9c"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,20)" fill="#3a2d9c"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,18)" fill="#3a2d9c"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,16)" fill="#3a2d9c"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,14)" fill="#3a2d9c"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,12)" fill="#3a2d9c"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,10)" fill="#3a2d9c"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,8)" fill="#3a2d9c"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,6)" fill="#3a2d9c"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,4)" fill="#3a2d9c"/>
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,2)" fill="#3a2d9c"/>
-    <!-- Sunset gradient face -->
-    <polygon points="150,110 404,110 374,190 240,190 240,228 344,228 318,298 240,298 240,400 150,400" transform="translate(0,0)" fill="url(#face)"/>
-  </g>
+  <!-- Centre fold line -->
+  <line x1="430" y1="104" x2="306" y2="246" stroke="#15282f" stroke-width="3" stroke-linecap="round"/>
 </svg>
