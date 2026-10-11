@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="./assets/cover-banner.png" alt="FlyCraft 1.0 Banner" width="100%">
+    <img src="./assets/banner.png" alt="FlyCraft banner" width="100%">
 </div>
 
 ---
@@ -49,7 +49,7 @@ This release represents the culmination of development work focusing on:
 Watch the short tutorial below for a walkthrough of FlyCraft's aerobatic controls and jet mode. The video is included in the repository root as `FLYCRAFT.mp4`.
 
 <div align="center">
-    <video controls width="960" poster="./assets/cover-banner.png">
+    <video controls width="960" poster="./assets/banner.png">
         <source src="./FLYCRAFT.mp4" type="video/mp4">
         Your browser does not support the video tag. <a href="./FLYCRAFT.mp4">Download the tutorial</a>.
     </video>
@@ -209,7 +209,8 @@ Each animation can trigger particle effects:
 ```
 FlyCraft/
 ├── assets/
-│   └── cover-banner.svg              # FlyCraft 1.0 cover image
+│   ├── banner.svg / banner.png       # README banner
+│   └── logo.svg / logo.png           # Project logo
 ├── src/
 │   └── main/
 │       ├── java/com/sameeran/flycraft/

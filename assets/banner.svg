@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 400" width="1280" height="400">
+  <title>FlyCraft banner</title>
+  <!-- Rendered PNG (banner.png) is the published version; text uses the Inter font -->
+  <rect width="1280" height="400" fill="#15282f"/>
+
+  <!-- Faint ground blocks for depth -->
+  <g fill="#1b333b">
+    <rect x="0"   y="372" width="1280" height="28"/>
+    <rect x="80"  y="352" width="96"  height="20"/>
+    <rect x="520" y="356" width="64"  height="16"/>
+    <rect x="980" y="348" width="120" height="24"/>
+  </g>
+
+  <!-- Flight trail: out of the block, along the bottom, a barrel-roll loop, up into the plane -->
+  <path d="M150 244 C200 226 228 322 340 326 L770 326
+           C872 326 950 246 894 228 C836 210 816 330 916 318
+           C972 312 996 214 1027 168"
+        fill="none" stroke="#e0a458" stroke-width="8" stroke-linecap="round" stroke-dasharray="2 20"/>
+
+  <!-- The block -->
+  <g stroke="#15282f" stroke-width="3" stroke-linejoin="round" transform="translate(10,-90)">
+    <polygon points="140,338 192,366 140,394 88,366"   fill="#f3eee4"/>
+    <polygon points="88,366 140,394 140,452 88,424"    fill="#cfc6b6"/>
+    <polygon points="192,366 140,394 140,452 192,424"  fill="#a99f8d"/>
+  </g>
+
+  <!-- The paper plane -->
+  <g stroke="#15282f" stroke-width="3" stroke-linejoin="round" transform="translate(836,8) scale(0.8)">
+    <polygon points="430,104 306,246 360,232"  fill="#a99f8d"/>
+    <polygon points="430,104 306,246 324,316"  fill="#cfc6b6"/>
+    <polygon points="430,104 236,196 306,246"  fill="#f3eee4"/>
+    <line x1="430" y1="104" x2="306" y2="246" stroke-linecap="round"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="262" y="196" font-family="Inter Display, Inter, sans-serif" font-weight="800"
+        font-size="116" letter-spacing="-3" fill="#f3eee4">FlyCraft</text>
+  <text x="266" y="246" font-family="Inter, sans-serif" font-weight="500"
+        font-size="30" fill="#e0a458">Jet flight &amp; aerobatics for Forge</text>
+  <text x="267" y="284" font-family="Inter, sans-serif" font-weight="500"
+        font-size="18" letter-spacing="1.5" fill="#8fa3a8">1.20.1  ·  JET MODE  ·  HOVER  ·  BOOST  ·  BARREL ROLL</text>
+</svg>
