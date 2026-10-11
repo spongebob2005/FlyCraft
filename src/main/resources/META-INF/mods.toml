@@ -6,6 +6,7 @@ license="MIT"
 modId="flycraft"
 version="1.0.0"
 displayName="FlyCraft"
+logoFile="logo.png"
 updateJSONURL=""
 authors="Sameeran"
 description='A Minecraft Forge mod that adds jet-like flight simulation while using an Elytra.'

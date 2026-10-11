@@ -7,6 +7,9 @@
 <!-- cover banner above -->
 <div align="center">
 
+<img src="./assets/logo.svg" alt="FlyCraft logo" width="128">
+
+
 ![Minecraft](https://img.shields.io/badge/Minecraft-1.20.1-green?logo=minecraft)
 ![Forge](https://img.shields.io/badge/Forge-47.4.10-orange)
 ![Java](https://img.shields.io/badge/Java-21%20LTS-blue)
