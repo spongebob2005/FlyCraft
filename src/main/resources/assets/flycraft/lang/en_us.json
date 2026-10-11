@@ -6,5 +6,8 @@
   "key.flycraft.clap": "Clap Animation",
   "key.flycraft.dance": "Dance Animation",
   "key.flycraft.spin": "Spin Animation",
-  "key.flycraft.jump_boost": "Jump Boost Animation"
+  "key.flycraft.jump_boost": "Jump Boost Animation",
+  "key.flycraft.hover": "Hover (Flight Pattern)",
+  "key.flycraft.boost": "Boost (Flight Pattern)",
+  "key.flycraft.barrel_roll": "Barrel Roll (Flight Pattern)"
 }

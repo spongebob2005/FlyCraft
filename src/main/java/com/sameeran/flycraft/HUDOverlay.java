@@ -68,8 +68,27 @@ public class HUDOverlay {
             double mult = AerobaticsManager.getStuntMultiplier();
             if (mult > 1.0) {
                 drawShadowed(event, mc,
-                    String.format("BOOST x%.1f", mult), x, yOff, 0xFFFF00);
+                    String.format("STUNT BONUS x%.1f", mult), x, yOff, 0xFFFF00);
+                yOff += 12;
             }
+
+            // ── Flight pattern status ─────────────────────────────────────
+            FlightPatternManager.Pattern pat = FlightPatternManager.getActive();
+            if (pat != FlightPatternManager.Pattern.NONE) {
+                int patColor = switch (pat) {
+                    case HOVER       -> 0x55FFFF;
+                    case BOOST       -> 0xFFAA00;
+                    case BARREL_ROLL -> 0xFF55FF;
+                    default          -> 0xFFFFFF;
+                };
+                drawShadowed(event, mc, "Pattern: " + pat.name().replace('_', ' '), x, yOff, patColor);
+                yOff += 12;
+            }
+            String boostText = FlightPatternManager.isBoostReady()
+                ? "[H] Boost READY"
+                : "[H] Boost " + ((FlightPatternManager.getBoostCooldown() + 19) / 20) + "s";
+            drawShadowed(event, mc, boostText, x, yOff,
+                FlightPatternManager.isBoostReady() ? 0x55FF55 : 0x888888);
 
             // ── Stats summary (top-right corner) ──────────────────────────
             int sw = mc.getWindow().getGuiScaledWidth();

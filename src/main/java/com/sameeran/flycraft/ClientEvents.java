@@ -40,12 +40,30 @@ public class ClientEvents {
                 player.getUUID(),
                 jetMode ? FlightModeManager.FlightMode.JET : FlightModeManager.FlightMode.NORMAL);
 
+            if (!jetMode) FlightPatternManager.cancel();
+
             player.displayClientMessage(Component.literal(
                 jetMode ? "§6✈ §aJet Mode §lON" : "§7🪂 Jet Mode §lOFF"), true);
             FlyCraftMod.LOGGER.debug("Jet Mode toggled to {}", jetMode);
         }
 
         if (player == null) return;
+
+        // Flight patterns - always consume clicks so presses don't queue up,
+        // but only act while flying in jet mode
+        boolean canPattern = jetMode && player.isFallFlying();
+        if (KeybindHandler.HOVER_KEY.consumeClick()) {
+            if (canPattern) FlightPatternManager.activate(FlightPatternManager.Pattern.HOVER, player);
+            else player.displayClientMessage(Component.literal("§7[FlyCraft] Patterns need Jet Mode + flight"), true);
+        }
+        if (KeybindHandler.BOOST_KEY.consumeClick()) {
+            if (canPattern) FlightPatternManager.activate(FlightPatternManager.Pattern.BOOST, player);
+            else player.displayClientMessage(Component.literal("§7[FlyCraft] Patterns need Jet Mode + flight"), true);
+        }
+        if (KeybindHandler.BARREL_ROLL_KEY.consumeClick()) {
+            if (canPattern) FlightPatternManager.activate(FlightPatternManager.Pattern.BARREL_ROLL, player);
+            else player.displayClientMessage(Component.literal("§7[FlyCraft] Patterns need Jet Mode + flight"), true);
+        }
 
         if (AnimationKeybinds.WAVE_KEY.consumeClick()) {
             AnimationController.playAnimation("wave");
