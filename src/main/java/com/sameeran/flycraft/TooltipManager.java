@@ -22,21 +22,17 @@ public class TooltipManager {
     private static int    tooltipDisplayTime = 0;
     private static final int TOOLTIP_DURATION = 200;
 
-    private static boolean tutorialMode = true;
-
     public static void showTooltip(String message) {
         currentTooltip    = message;
         tooltipDisplayTime = TOOLTIP_DURATION;
     }
 
-    public static void setTutorialMode(boolean enabled) { tutorialMode = enabled; }
-    public static boolean isTutorialMode()              { return tutorialMode; }
 
     @SubscribeEvent
     public static void onRenderGui(RenderGuiEvent.Post event) {
         Minecraft mc = Minecraft.getInstance();
         // Skip when any GUI screen is open
-        if (mc.screen != null) return;
+        if (mc.screen != null || mc.options.hideGui) return;
 
         LocalPlayer player = mc.player;
         if (player == null) return;
@@ -54,10 +50,11 @@ public class TooltipManager {
         }
 
         // Contextual flight hints
-        if (tutorialMode) {
+        if (FlyCraftConfig.TUTORIAL_HINTS.get()) {
             String hint = "";
-            if (!player.isFallFlying() && !ClientEvents.isJetMode()) {
-                hint = "Press R to toggle Jet Mode (requires Elytra)";
+            if (!ClientEvents.isJetMode() && ClientEvents.hasElytraEquipped(player)) {
+                hint = "Press " + KeybindHandler.TOGGLE_MODE_KEY.getTranslatedKeyMessage().getString()
+                     + " to toggle Jet Mode";
             } else if (player.isFallFlying() && ClientEvents.isJetMode()) {
                 double speed = player.getDeltaMovement().length();
                 if (speed < 0.8) {

@@ -15,11 +15,14 @@ public class HUDOverlay {
     public static void onRender(RenderGuiEvent.Post event) {
         Minecraft mc = Minecraft.getInstance();
         LocalPlayer player = mc.player;
-        if (player == null) return;
+        if (player == null || mc.options.hideGui || !FlyCraftConfig.SHOW_HUD.get()) return;
+
+        boolean jetMode = ClientEvents.isJetMode();
+        // Nothing to report unless the player could actually fly
+        if (!jetMode && !ClientEvents.hasElytraEquipped(player)) return;
 
         RenderSystem.disableBlend();
 
-        boolean jetMode = ClientEvents.isJetMode();
         double  speed   = player.getDeltaMovement().length();
         int x = 10, y = 10;
 
@@ -30,7 +33,9 @@ public class HUDOverlay {
         drawShadowed(event, mc, modeText, x, y, modeColor);
 
         // ── Speed bar ─────────────────────────────────────────────────────
-        String speedText = String.format("Speed: %.2f / %.1f m/s", speed, FlightController.MAX_SPEED);
+        double maxSpeed  = FlightController.maxSpeed();
+        // Velocity is in blocks per tick; 20 ticks per second
+        String speedText = String.format("Speed: %.1f / %.0f m/s", speed * 20, maxSpeed * 20);
         drawShadowed(event, mc, speedText, x, y + 12, 0xFFFFFF);
 
         if (jetMode && player.isFallFlying()) {
@@ -39,7 +44,7 @@ public class HUDOverlay {
             int barH    = 4;
             int barX    = x;
             int barY    = y + 26;
-            float frac  = Math.min((float)(speed / FlightController.MAX_SPEED), 1f);
+            float frac  = Math.min((float)(speed / maxSpeed), 1f);
             int barColor = frac > 0.8f ? 0xFF2222 : frac > 0.5f ? 0xFFAA00 : 0x22FF66;
 
             event.getGuiGraphics().fill(barX, barY, barX + barW, barY + barH, 0x88000000);

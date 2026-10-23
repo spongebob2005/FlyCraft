@@ -27,13 +27,14 @@ public class JetModeOverlayRenderer {
         Minecraft mc = Minecraft.getInstance();
         LocalPlayer player = mc.player;
 
-        if (player == null || !player.isFallFlying() || !ClientEvents.isJetMode()) {
+        if (player == null || mc.options.hideGui || !FlyCraftConfig.SHOW_JET_OVERLAY.get()
+                || !player.isFallFlying() || !ClientEvents.isJetMode()) {
             return;
         }
 
         // Get current speed to scale visual effects
         double speed = player.getDeltaMovement().length();
-        double maxSpeed = 2.8; // Must match FlightController.MAX_SPEED
+        double maxSpeed = FlightController.maxSpeed();
         float speedFraction = Math.min((float) (speed / maxSpeed), 1.0f);
 
         // Render overlays based on speed intensity

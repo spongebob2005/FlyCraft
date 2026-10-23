@@ -1,23 +1,18 @@
 package com.sameeran.flycraft.animation;
 
 import net.minecraft.client.model.PlayerModel;
-import net.minecraft.client.player.AbstractClientPlayer;
 
 /**
  * Animation for falling/gliding
  */
 public class GlideAnimation extends Animation {
-    private PlayerModel<?> model;
 
-    public GlideAnimation(float duration, AbstractClientPlayer player, PlayerModel<?> model) {
+    public GlideAnimation(float duration) {
         super(duration, true);
-        this.model = model;
     }
 
     @Override
-    protected void onUpdate(float progress) {
-        if (model == null) return;
-
+    public void apply(PlayerModel<?> model, float progress) {
         // Gentle wave motion for arms while gliding
         float wave = (float) Math.sin(progress * Math.PI * 2) * 0.3f;
 

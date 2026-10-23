@@ -6,3 +6,7 @@ src/generated/**/*.json text eol=lf
 # Track large media with Git LFS
 *.mp4 filter=lfs diff=lfs merge=lfs -text
 assets/FLYCRAFT.mp4 filter=lfs diff=lfs merge=lfs -text
+# Shell scripts must keep LF endings or they fail on Linux/macOS (and in CI)
+gradlew text eol=lf
+*.sh text eol=lf
+*.bat text eol=crlf

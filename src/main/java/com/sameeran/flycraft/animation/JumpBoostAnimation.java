@@ -1,29 +1,29 @@
 package com.sameeran.flycraft.animation;
 
 import net.minecraft.client.model.PlayerModel;
-import net.minecraft.client.player.AbstractClientPlayer;
 
 /**
  * Animation for jumping boost
  */
 public class JumpBoostAnimation extends Animation {
-    private PlayerModel<?> model;
 
-    public JumpBoostAnimation(float duration, AbstractClientPlayer player, PlayerModel<?> model) {
+    public JumpBoostAnimation(float duration) {
         super(duration, false);
-        this.model = model;
     }
 
     @Override
-    protected void onUpdate(float progress) {
-        if (model == null) return;
+    public void apply(PlayerModel<?> model, float progress) {
+        float eased = ease(EasingFunction.Easing.BOUNCE, progress);
+        // Dip down then spring back up (0 at both ends, deepest mid-way)
+        float crouch = (float) Math.sin(eased * Math.PI);
 
-        float eased = easeProgress(EasingFunction.Easing.BOUNCE);
-
-        // Crouch down then spring up
-        model.body.y = -eased * 2;
-        model.rightLeg.y = eased * 2;
-        model.leftLeg.y = eased * 2;
+        // Crouch: lower the upper body (model +y is down); legs stay planted
+        float drop = crouch * 2;
+        model.body.y += drop;
+        model.head.y += drop;
+        model.hat.y += drop;
+        model.rightArm.y += drop;
+        model.leftArm.y += drop;
 
         // Arms prepare for jump
         model.rightArm.xRot = -0.8f * (1 - eased);

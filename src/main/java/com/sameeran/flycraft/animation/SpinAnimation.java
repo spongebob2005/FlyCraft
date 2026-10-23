@@ -1,27 +1,29 @@
 package com.sameeran.flycraft.animation;
 
 import net.minecraft.client.model.PlayerModel;
-import net.minecraft.client.player.AbstractClientPlayer;
 
 /**
- * Animation for spinning/dashing
+ * Animation for spinning/dashing.
+ *
+ * Rotates the whole player rather than individual limbs, so the turn is
+ * applied to the render pose stack by AnimationController (relative to the
+ * player's current heading) instead of in apply().
  */
 public class SpinAnimation extends Animation {
-    private AbstractClientPlayer player;
 
-    public SpinAnimation(float duration, AbstractClientPlayer player, PlayerModel<?> model) {
+    public SpinAnimation(float duration) {
         super(duration, false);
-        this.player = player;
     }
 
     @Override
-    protected void onUpdate(float progress) {
-        if (player == null) return;
+    public void apply(PlayerModel<?> model, float progress) {
+        // No limb changes — see getYawDegrees()
+    }
 
-        float eased = easeProgress(EasingFunction.Easing.EASE_OUT);
-        float rotation = 360 * eased;
-
-        // This affects visual rotation - applied in rendering
-        player.yBodyRotO = rotation;
+    /**
+     * Extra yaw (degrees) to add on top of the player's own rotation.
+     */
+    public float getYawDegrees(float progress) {
+        return 360 * ease(EasingFunction.Easing.EASE_OUT, progress);
     }
 }

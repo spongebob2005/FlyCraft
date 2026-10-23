@@ -30,10 +30,20 @@ public class FlightController {
     private static final double BANKING_FORCE = 0.015;
     private static final double MIN_SPEED     = 0.8;
 
+    /** Top jet speed, from config (blocks per tick). */
+    public static double maxSpeed() {
+        return FlyCraftConfig.MAX_SPEED.get();
+    }
+
     @SubscribeEvent
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (!event.player.level().isClientSide || event.phase != TickEvent.Phase.END) return;
+        // Other players tick on the client too (as RemotePlayer) — only fly ourselves
         if (!(event.player instanceof LocalPlayer player)) return;
+
+        // Run every tick (not just while flying) so both can reset when a flight ends
+        AerobaticsManager.updateStunts(player);
+        StatsManager.updateStats(player);
 
         FlightPatternManager.tick(); // cooldowns drain even while grounded
 
@@ -65,10 +75,9 @@ public class FlightController {
         Vec3 side    = look.cross(up).scale(BANKING_FORCE * speed);
 
         Vec3 target = currentVel.add(thrust).add(lift).add(drag).add(side);
-
         double stuntMult = AerobaticsManager.getStuntMultiplier();
         if (stuntMult > 1.0 && target.lengthSqr() > 1e-6) {
-            target = target.normalize().scale(Math.min(target.length() * stuntMult, MAX_SPEED));
+            target = target.normalize().scale(Math.min(target.length() * stuntMult, maxSpeed()));
         }
 
         // ── Flight pattern layer ──────────────────────────────────────────
@@ -80,7 +89,7 @@ public class FlightController {
 
         // ── Speed limits ──────────────────────────────────────────────────
         double maxSpeed = pattern == FlightPatternManager.Pattern.BOOST
-            ? FlightPatternManager.BOOST_MAX_SPEED : MAX_SPEED;
+            ? FlightPatternManager.BOOST_MAX_SPEED : maxSpeed();
 
         if (target.length() > maxSpeed) {
             target = target.normalize().scale(maxSpeed);
@@ -94,7 +103,8 @@ public class FlightController {
 
         player.setDeltaMovement(currentVel.lerp(target, SMOOTHNESS));
 
-        // ── Effects ───────────────────────────────────────────────────────
+        if (!FlyCraftConfig.EXHAUST_EFFECTS.get()) return;
+
         if (player.tickCount % 2 == 0) {
             if (pattern == FlightPatternManager.Pattern.BOOST) {
                 player.level().addParticle(ParticleTypes.FLAME,
@@ -122,15 +132,13 @@ public class FlightController {
                     ? SoundEvents.FIREWORK_ROCKET_LAUNCH : SoundEvents.FIRECHARGE_USE,
                 SoundSource.PLAYERS, 0.4f, 1.2f);
         }
-
-        AerobaticsManager.updateStunts(player);
-        StatsManager.updateStats(player);
     }
 
     @SubscribeEvent
     public static void onCameraUpdate(ViewportEvent.ComputeCameraAngles event) {
         LocalPlayer player = Minecraft.getInstance().player;
         if (player == null || !player.isFallFlying() || !ClientEvents.isJetMode()) return;
+        if (!FlyCraftConfig.CAMERA_EFFECTS.get()) return;
 
         FlightPatternManager.Pattern pattern = FlightPatternManager.getActive();
 
@@ -159,8 +167,10 @@ public class FlightController {
         event.setRoll(bank);
         event.setPitch(event.getPitch() - (float) (speed * 0.5));
 
-        if (speed > MAX_SPEED * 0.8) {
-            float shake = (float) (Math.sin(tick * speed) * 0.3 * Math.min(speed / MAX_SPEED, 1.6));
+        // Subtle high-speed shake
+        double maxSpeed = maxSpeed();
+        if (speed > maxSpeed * 0.8) {
+            float shake = (float) (Math.sin(tick * speed) * 0.3 * (speed / maxSpeed));
             event.setRoll(event.getRoll() + shake);
             event.setYaw(event.getYaw() + shake * 0.5f);
         }

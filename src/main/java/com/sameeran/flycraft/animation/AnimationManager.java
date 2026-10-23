@@ -6,7 +6,9 @@ import java.util.*;
  * Manages all active animations for the player
  */
 public class AnimationManager {
-    private static final Map<String, Animation> ACTIVE_ANIMATIONS = new HashMap<>();
+    // Insertion order is apply order: later animations override earlier ones,
+    // so register ambient poses (glide) before gestures (wave, clap, ...)
+    private static final Map<String, Animation> ACTIVE_ANIMATIONS = new LinkedHashMap<>();
     private static final List<String> ANIMATION_QUEUE = new ArrayList<>();
 
     public static void registerAnimation(String name, Animation animation) {
@@ -43,14 +45,9 @@ public class AnimationManager {
         // Update all active animations
         ACTIVE_ANIMATIONS.values().forEach(animation -> animation.update(deltaTime));
 
-        // Process animation queue
-        if (!ANIMATION_QUEUE.isEmpty() && ANIMATION_QUEUE.get(0) != null) {
-            String nextAnimation = ANIMATION_QUEUE.get(0);
-            Animation animation = ACTIVE_ANIMATIONS.get(nextAnimation);
-            if (animation != null && !animation.isPlaying()) {
-                playAnimation(nextAnimation);
-                ANIMATION_QUEUE.remove(0);
-            }
+        // Start the next queued animation once nothing else is playing
+        if (!ANIMATION_QUEUE.isEmpty() && !isAnyAnimationPlaying()) {
+            playAnimation(ANIMATION_QUEUE.remove(0));
         }
     }
 
@@ -61,6 +58,13 @@ public class AnimationManager {
     public static boolean isAnimationPlaying(String name) {
         Animation animation = ACTIVE_ANIMATIONS.get(name);
         return animation != null && animation.isPlaying();
+    }
+
+    public static boolean isAnyAnimationPlaying() {
+        for (Animation animation : ACTIVE_ANIMATIONS.values()) {
+            if (animation.isPlaying()) return true;
+        }
+        return false;
     }
 
     public static void clearAnimations() {

@@ -1,24 +1,19 @@
 package com.sameeran.flycraft.animation;
 
 import net.minecraft.client.model.PlayerModel;
-import net.minecraft.client.player.AbstractClientPlayer;
 
 /**
  * Animation for flying gesture - raises arms to sides
  */
 public class FlyingAnimation extends Animation {
-    private PlayerModel<?> model;
 
-    public FlyingAnimation(float duration, AbstractClientPlayer player, PlayerModel<?> model) {
+    public FlyingAnimation(float duration) {
         super(duration, false);
-        this.model = model;
     }
 
     @Override
-    protected void onUpdate(float progress) {
-        if (model == null) return;
-
-        float eased = easeProgress(EasingFunction.Easing.EASE_IN_OUT);
+    public void apply(PlayerModel<?> model, float progress) {
+        float eased = ease(EasingFunction.Easing.EASE_IN_OUT, progress);
 
         // Raise both arms
         model.rightArm.xRot = -1.5f * eased;

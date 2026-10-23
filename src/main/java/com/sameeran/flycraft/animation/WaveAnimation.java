@@ -1,23 +1,18 @@
 package com.sameeran.flycraft.animation;
 
 import net.minecraft.client.model.PlayerModel;
-import net.minecraft.client.player.AbstractClientPlayer;
 
 /**
  * Animation for wave/greeting
  */
 public class WaveAnimation extends Animation {
-    private PlayerModel<?> model;
 
-    public WaveAnimation(float duration, AbstractClientPlayer player, PlayerModel<?> model) {
+    public WaveAnimation(float duration) {
         super(duration, false);
-        this.model = model;
     }
 
     @Override
-    protected void onUpdate(float progress) {
-        if (model == null) return;
-
+    public void apply(PlayerModel<?> model, float progress) {
         float wave = (float) Math.sin(progress * Math.PI * 3) * 0.5f;
 
         // Wave right arm
